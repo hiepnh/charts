@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-service
+  labels: {{ include "common.labels" . | nindent 6 }}
+spec:
+  replicas: 3
+  selector:
+    matchLabels: {{ include "common.labels" . | nindent 8 }}
+  template:
+    metadata:
+      labels: {{ include "common.labels" . | nindent 10 }}
+    spec:
+      containers: {{ include "common.container" . | nindent 6 }}
